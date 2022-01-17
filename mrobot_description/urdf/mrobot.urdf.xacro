@@ -3,7 +3,7 @@
   <xacro:include filename="$(find mrobot_description)/urdf/common_properties.xacro"/>
 
   <xacro:property name="wheel_radius" value="0.033"/>
-  <xacro:property name="wheel_length" value="0.017"/>
+  <xacro:property name="wheel_height" value="0.017"/>
   <xacro:property name="base_link_radius" value="0.13"/>
   <xacro:property name="base_link_length" value="0.005"/>
   <xacro:property name="motor_radius" value="0.02"/>
@@ -44,50 +44,18 @@
     <child link="base_link" />
   </joint>
 
-  <xacro:macro name="motor" params="prefix yreflect">
-    <link name="${prefix}_motor">
-      <visual>
-        <geometry>
-          <cylinder radius="${motor_radius}" length="${motor_length}"/>
-        </geometry>
-        <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
-        <material name="gray" />
-      </visual>
-      <collision>
-        <geometry>
-          <cylinder radius="${motor_radius}" length="${motor_length}"/>
-        </geometry>
-        <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
-      </collision>
-      <inertial>
-        <origin xyz="0 0 0" />
-        <mass value="0.1" />
-        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-          iyy="0.001" iyz="0.0"
-          izz="0.001" />
-      </inertial>
-    </link>
-    <joint name="base_${prefix}_motor_joint" type="fixed">
-      <origin xyz="${motor_x} ${motor_y_dist/2*yreflect} 0" rpy="0 0 0" />
-      <parent link="base_link"/>
-      <child link="${prefix}_motor" />
-    </joint>
-  </xacro:macro>
-
   <xacro:macro name="wheel" params="prefix yreflect">
-    <xacro:motor prefix="${prefix}" yreflect="${yreflect}"/>
-
     <link name="${prefix}_wheel_link">
       <visual>
         <geometry>
-          <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+          <cylinder radius="${wheel_radius}" length="${wheel_height}"/>
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
         <material name="white" />
       </visual>
       <collision>
         <geometry>
-          <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+          <cylinder radius="${wheel_radius}" length="${wheel_height}"/>
         </geometry>
         <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
       </collision>
@@ -100,8 +68,8 @@
       </inertial>
     </link>
     <joint name="${prefix}_wheel_joint" type="continuous">
-      <origin xyz="0 ${(motor_length+wheel_length)/2*yreflect} 0" rpy="0 0 0"/>
-      <parent link="${prefix}_motor"/>
+      <origin xyz="${motor_x} ${base_link_radius*yreflect} 0" rpy="0 0 0"/>
+      <parent link="base_link"/>
       <child link="${prefix}_wheel_link"/>
       <axis xyz="0 1 0"/>
     </joint>
