@@ -145,69 +145,48 @@
     </joint>
   </xacro:macro>
 
+  <xacro:macro name="plate" params="num parent">
+    <link name="plate_${num}_link">
+      <visual>
+        <geometry>
+          <cylinder radius="${base_link_radius}" length="${base_link_length}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <material name="yellow"/>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="${base_link_radius}" length="${base_link_length}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="0.1" />
+        <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+          iyy="0.01" iyz="0.0"
+          izz="0.01" />
+      </inertial>
+    </link>
+    <joint name="plate_${num}_joint" type="fixed">
+      <origin xyz="0 0 ${plate_height}" rpy="0 0 0" />
+      <parent link="${parent}"/>
+      <child link="plate_${num}_link"/>
+    </joint>
+  </xacro:macro>
+
   <xacro:mrobot_standoff_2in parent="base_link" number="1" x_loc="-${standoff_x/2 + 0.03}" y_loc="-${standoff_y - 0.03}" z_loc="${plate_height/2}"/>
   <xacro:mrobot_standoff_2in parent="base_link" number="2" x_loc="-${standoff_x/2 + 0.03}" y_loc="${standoff_y - 0.03}" z_loc="${plate_height/2}"/>
   <xacro:mrobot_standoff_2in parent="base_link" number="3" x_loc="${standoff_x/2}" y_loc="-${standoff_y}" z_loc="${plate_height/2}"/>
   <xacro:mrobot_standoff_2in parent="base_link" number="4" x_loc="${standoff_x/2}" y_loc="${standoff_y}" z_loc="${plate_height/2}"/>
 
-  <link name="plate_1_link">
-    <visual>
-      <geometry>
-        <cylinder radius="${base_link_radius}" length="${base_link_length}"/>
-      </geometry>
-      <origin xyz=" 0 0 0 " rpy="0 0 0" />
-      <material name="yellow"/>
-    </visual>
-    <collision>
-      <geometry>
-        <cylinder radius="${base_link_radius}" length="${base_link_length}"/>
-      </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1" />
-      <inertia ixx="0.01" ixy="0.0" ixz="0.0"
-               iyy="0.01" iyz="0.0"
-               izz="0.01" />
-    </inertial>
-  </link>
-  <joint name="plate_1_joint" type="fixed">
-    <origin xyz="0 0 ${plate_height}" rpy="0 0 0" />
-    <parent link="base_link"/>
-    <child link="plate_1_link"/>
-  </joint>
+  <xacro:plate num="1" parent="base_link"/>
 
   <xacro:mrobot_standoff_2in parent="standoff_2in_1_link" number="5" x_loc="0" y_loc="0" z_loc="${plate_height}"/>
   <xacro:mrobot_standoff_2in parent="standoff_2in_2_link" number="6" x_loc="0" y_loc="0" z_loc="${plate_height}"/>
   <xacro:mrobot_standoff_2in parent="standoff_2in_3_link" number="7" x_loc="0" y_loc="0" z_loc="${plate_height}"/>
   <xacro:mrobot_standoff_2in parent="standoff_2in_4_link" number="8" x_loc="0" y_loc="0" z_loc="${plate_height}"/>
 
-  <link name="plate_2_link">
-    <visual>
-      <geometry>
-        <cylinder radius="${base_link_radius}" length="${base_link_length}"/>
-      </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <material name="yellow" />
-    </visual>
-    <collision>
-      <geometry>
-        <cylinder radius="${base_link_radius}" length="${base_link_length}"/>
-      </geometry>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.1" />
-      <inertia ixx="0.01" ixy="0.0" ixz="0.0"
-               iyy="0.01" iyz="0.0"
-               izz="0.01" />
-    </inertial>
-  </link>
-  <joint name="plate_2_joint" type="fixed">
-    <origin xyz="0 0 ${plate_height}" rpy="0 0 0" />
-    <parent link="plate_1_link"/>
-    <child link="plate_2_link"/>
-  </joint>
+  <xacro:plate num="2" parent="plate_1_link"/>
+
 </robot>
