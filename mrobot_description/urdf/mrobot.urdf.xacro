@@ -4,13 +4,16 @@
 
   <xacro:property name="wheel_radius" value="0.033"/>
   <xacro:property name="wheel_height" value="0.017"/>
+  <xacro:property name="wheel_mass"   value="0.1" />
   <xacro:property name="base_link_radius" value="0.13"/>
   <xacro:property name="base_link_length" value="0.005"/>
-  <xacro:property name="motor_radius" value="0.02"/>
-  <xacro:property name="motor_length" value="0.08"/>
+  <xacro:property name="base_mass"        value="0.5" />
   <xacro:property name="motor_x" value="-0.05"/>
-  <xacro:property name="motor_y_dist" value="0.150"/>
+  <xacro:property name="caster_radius"         value="0.016" />
+  <xacro:property name="caster_joint_origin_x" value="-0.12" />
+  <xacro:property name="caster_mass"           value="0.01" />
   <xacro:property name="plate_height" value="0.07"/>
+  <xacro:property name="plate_mass"   value="0.05"/>
   <xacro:property name="standoff_x" value="0.12"/>
   <xacro:property name="standoff_y" value="0.10"/>
 
