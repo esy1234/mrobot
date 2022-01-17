@@ -4,6 +4,8 @@
 
   <xacro:property name="wheel_radius" value="0.033"/>
   <xacro:property name="wheel_length" value="0.017"/>
+  <xacro:property name="base_link_radius" value="0.13"/>
+  <xacro:property name="base_link_length" value="0.005"/>
   <xacro:property name="motor_radius" value="0.02"/>
   <xacro:property name="motor_length" value="0.08"/>
   <xacro:property name="motor_x" value="-0.055"/>
@@ -59,4 +61,19 @@
 
   <xacro:wheel prefix="left" yreflect="1"/>
   <xacro:wheel prefix="right" yreflect="-1"/>
+
+  <link name="front_caster_link">
+    <visual>
+      <geometry>
+        <sphere radius="${wheel_radius/2}" />
+      </geometry>
+      <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+      <material name="black" />
+    </visual>
+  </link>
+  <joint name="front_caster_joint" type="fixed">
+    <origin xyz="${base_link_radius-wheel_radius/2} 0 -${wheel_radius/2}" rpy="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="front_caster_link"/>
+  </joint>
 </robot>
