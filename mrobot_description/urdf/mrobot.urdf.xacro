@@ -183,6 +183,19 @@
       <origin xyz=" 0 0 0 " rpy="0 0 0" />
       <material name="yellow"/>
     </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${base_link_radius}" length="${base_link_length}"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </collision>
+    <inertial>
+      <origin xyz="0 0 0" />
+      <mass value="0.1" />
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0"
+               iyy="0.01" iyz="0.0"
+               izz="0.01" />
+    </inertial>
   </link>
   <joint name="plate_1_joint" type="fixed">
     <origin xyz="0 0 ${plate_height}" rpy="0 0 0" />
