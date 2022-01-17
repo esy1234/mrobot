@@ -4,6 +4,7 @@
 
   <!-- TODO Solid sphere of radius r and mass m -->
   <xacro:macro name="sphere_inertia" params="m r">
+    <mass value="${m}"/>
     <inertia ixx="${(2*r*r*m)/5}" ixy = "0.0" ixz = "0.0"
       iyy="${(2*r*r*m)/5}" iyz = "0.0"
       izz="${(2*r*r*m)/5}"/>
@@ -11,6 +12,7 @@
 
   <!-- TODO Hollow sphere of radius r and mass m-->
   <xacro:macro name="hollow_sphere_inertia" params="m r">
+    <mass value="${m}"/>
     <inertia ixx="${(2*r*r*m)/3}" ixy = "0.0" ixz = "0.0"
              iyy="${(2*r*r*m)/3}" iyz = "0.0"
              izz="${(2*r*r*m)/3}"/>
@@ -18,6 +20,7 @@
 
   <!-- TODO Solid cuboid of length l, width w, height h, and mass m -->
   <xacro:macro name="box_inertia" params="m l w h">
+    <mass value="${m}"/>
     <inertia ixx="${(m*(w*w+h*h))/12}" ixy = "0.0" ixz = "0.0"
              iyy="${(m*(h*h+l*l))/12}" iyz = "0.0"
              izz="${(m*(l*l+w*w))/12}"/>
@@ -25,6 +28,7 @@
 
   <!-- TODO Solid cylinder of radius r, height h and mass m -->
   <xacro:macro name="cylinder_inertia" params="m r h">
+    <mass value="${m}"/>
     <inertia ixx="${m*(3*r*r+h*h)/12}" ixy = "0.0" ixz = "0.0"
              iyy="${m*(3*r*r+h*h)/12}" iyz = "0.0"
              izz="${m*r*r/2}"/>
