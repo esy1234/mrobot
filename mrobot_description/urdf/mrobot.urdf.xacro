@@ -11,6 +11,8 @@
   <xacro:property name="motor_x" value="-0.055"/>
   <xacro:property name="motor_y_dist" value="0.150"/>
   <xacro:property name="plate_height" value="0.07"/>
+  <xacro:property name="standoff_x" value="0.12"/>
+  <xacro:property name="standoff_y" value="0.10"/>
 
   <link name="base_footprint"/>
 
@@ -135,6 +137,43 @@
     <parent link="base_link"/>
     <child link="front_caster_link"/>
   </joint>
+
+  <xacro:macro name="mrobot_standoff_2in" params="parent number x_loc y_loc z_loc">
+    <link name="standoff_2in_${number}_link">
+      <visual>
+        <geometry>
+          <box size="0.01 0.01 0.07" />
+        </geometry>
+        <origin xyz=" 0 0 0 " rpy="0 0 0" />
+        <material name="black2">
+          <color rgba="0.16 0.17 0.15 0.9"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.01 0.01 0.07" />
+        </geometry>
+        <origin xyz=" 0 0 0 " rpy="0 0 0" />
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="0.001" />
+        <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+                 iyy="0.0001" iyz="0.0"
+                 izz="0.0001" />
+      </inertial>
+    </link>
+    <joint name="standoff_2in_${number}_joint" type="fixed">
+      <origin xyz="${x_loc} ${y_loc} ${z_loc}" rpy="0 0 0" />
+      <parent link="${parent}"/>
+      <child link="standoff_2in_${number}_link" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:mrobot_standoff_2in parent="base_link" number="1" x_loc="-${standoff_x/2 + 0.03}" y_loc="-${standoff_y - 0.03}" z_loc="${plate_height/2}"/>
+  <xacro:mrobot_standoff_2in parent="base_link" number="2" x_loc="-${standoff_x/2 + 0.03}" y_loc="${standoff_y - 0.03}" z_loc="${plate_height/2}"/>
+  <xacro:mrobot_standoff_2in parent="base_link" number="3" x_loc="${standoff_x/2}" y_loc="-${standoff_y}" z_loc="${plate_height/2}"/>
+  <xacro:mrobot_standoff_2in parent="base_link" number="4" x_loc="${standoff_x/2}" y_loc="${standoff_y}" z_loc="${plate_height/2}"/>
 
   <link name="plate_1_link">
     <visual>
