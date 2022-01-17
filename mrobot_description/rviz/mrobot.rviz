@@ -6,6 +6,8 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /RobotModel1
+        - /TF1
       Splitter Ratio: 0.5
     Tree Height: 549
   - Class: rviz/Selection
@@ -52,13 +54,12 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Alpha: 1
+    - Alpha: 0.6000000238418579
       Class: rviz/RobotModel
       Collision Enabled: false
       Enabled: true
       Links:
-        All Links Enabled:
-          {}
+        All Links Enabled: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
@@ -71,6 +72,82 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
+        front_caster_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_motor:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        plate_1_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        plate_2_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_motor:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        standoff_2in_1_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        standoff_2in_2_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        standoff_2in_3_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        standoff_2in_4_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        standoff_2in_5_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        standoff_2in_6_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        standoff_2in_7_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        standoff_2in_8_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -86,7 +163,37 @@ Visualization Manager:
           Value: true
         base_link:
           Value: true
-      Marker Scale: 1
+        front_caster_link:
+          Value: true
+        left_motor:
+          Value: true
+        left_wheel_link:
+          Value: true
+        plate_1_link:
+          Value: true
+        plate_2_link:
+          Value: true
+        right_motor:
+          Value: true
+        right_wheel_link:
+          Value: true
+        standoff_2in_1_link:
+          Value: true
+        standoff_2in_2_link:
+          Value: true
+        standoff_2in_3_link:
+          Value: true
+        standoff_2in_4_link:
+          Value: true
+        standoff_2in_5_link:
+          Value: true
+        standoff_2in_6_link:
+          Value: true
+        standoff_2in_7_link:
+          Value: true
+        standoff_2in_8_link:
+          Value: true
+      Marker Scale: 0.25
       Name: TF
       Show Arrows: true
       Show Axes: true
@@ -94,7 +201,29 @@ Visualization Manager:
       Tree:
         base_footprint:
           base_link:
-            {}
+            front_caster_link:
+              {}
+            left_motor:
+              left_wheel_link:
+                {}
+            plate_1_link:
+              plate_2_link:
+                {}
+            right_motor:
+              right_wheel_link:
+                {}
+            standoff_2in_1_link:
+              standoff_2in_5_link:
+                {}
+            standoff_2in_2_link:
+              standoff_2in_6_link:
+                {}
+            standoff_2in_3_link:
+              standoff_2in_7_link:
+                {}
+            standoff_2in_4_link:
+              standoff_2in_8_link:
+                {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -125,7 +254,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10
+      Distance: 1.1381654739379883
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -140,10 +269,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.785398006439209
+      Pitch: 0.6103990077972412
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.785398006439209
+      Yaw: 4.185419082641602
     Saved: ~
 Window Geometry:
   Displays:
@@ -162,4 +291,4 @@ Window Geometry:
     collapsed: false
   Width: 1200
   X: 67
-  Y: 30
+  Y: 27
