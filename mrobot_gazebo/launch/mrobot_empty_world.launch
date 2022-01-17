@@ -2,7 +2,7 @@
 <launch>
 
   <arg name="model" default="$(find mrobot_description)/urdf/mrobot.urdf.xacro"/>
-  <arg name="rvizconfig" default="$(find mrobot_description)/rviz/mrobot.rviz" />
+  <arg name="rvizconfig" default="$(find mrobot_gazebo)/rviz/mrobot_gazebo.rviz" />
   <arg name="x_pos" default="0.0"/>
   <arg name="y_pos" default="0.0"/>
   <arg name="z_pos" default="0.0"/>
