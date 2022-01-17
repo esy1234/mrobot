@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
 <robot name="mrobot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find mrobot_description)/urdf/common_properties.xacro"/>
 
   <xacro:property name="wheel_radius" value="0.033"/>
+  <xacro:property name="motor_radius" value="0.02"/>
+  <xacro:property name="motor_length" value="0.08"/>
+  <xacro:property name="motor_x" value="-0.055"/>
+  <xacro:property name="motor_y_dist" value="0.150"/>
 
   <link name="base_footprint"/>
 
@@ -12,4 +17,25 @@
     <parent link="base_footprint"/>
     <child link="base_link" />
   </joint>
+
+  <xacro:macro name="motor" params="prefix yreflect">
+    <link name="${prefix}_motor">
+      <visual>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+        <geometry>
+          <cylinder radius="${motor_radius}" length="${motor_length}"/>
+        </geometry>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <material name="gray" />
+      </visual>
+    </link>
+    <joint name="base_${prefix}_motor_joint" type="fixed">
+      <origin xyz="${motor_x} ${motor_y_dist/2*yreflect} 0" rpy="0 0 0" />
+      <parent link="base_link"/>
+      <child link="${prefix}_motor" />
+    </joint>
+  </xacro:macro>
+
+  <xacro:motor prefix="left" yreflect="1"/>
+  <xacro:motor prefix="right" yreflect="-1"/>
 </robot>
