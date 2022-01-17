@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mrobot_control</name>
+  <version>0.0.0</version>
+  <description>The mrobot_control package</description>
+
+  <author>esy</author>
+  <maintainer email="esy_183@163.com">esy</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>joint_state_controller</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+</package>
