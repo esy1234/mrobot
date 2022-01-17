@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <robot name="mrobot" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find mrobot_description)/urdf/common_properties.xacro"/>
+  <xacro:include filename="$(find mrobot_description)/urdf/inertia.urdf.xacro"/>
 
   <xacro:property name="wheel_radius" value="0.033"/>
   <xacro:property name="wheel_height" value="0.017"/>
@@ -35,10 +36,7 @@
     </collision>
     <inertial>
       <origin xyz="0 0 0" />
-      <mass value="2" />
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-               iyy="0.001" iyz="0.0"
-               izz="0.5" />
+      <xacro:cylinder_inertia m="${base_mass}" r="${base_link_radius}" h="${base_link_length}"/>
     </inertial>
   </link>
   <joint name="base_footprint_joint" type="fixed">
@@ -64,10 +62,7 @@
       </collision>
       <inertial>
         <origin xyz="0 0 0" />
-        <mass value="0.01" />
-        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-          iyy="0.001" iyz="0.0"
-          izz="0.001" />
+        <xacro:cylinder_inertia m="${wheel_mass}" r="${wheel_radius}" h="${wheel_height}"/>
       </inertial>
     </link>
     <joint name="${prefix}_wheel_joint" type="continuous">
@@ -98,10 +93,7 @@
       </collision>
       <inertial>
         <origin xyz="0 0 0" />
-        <mass value="0.001" />
-        <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
-          iyy="0.0001" iyz="0.0"
-          izz="0.0001" />
+        <xacro:sphere_inertia m="${caster_mass}" r="${caster_radius}"/>
       </inertial>
     </link>
     <joint name="{fb}_caster_joint" type="fixed">
@@ -162,10 +154,7 @@
       </collision>
       <inertial>
         <origin xyz="0 0 0" />
-        <mass value="0.1" />
-        <inertia ixx="0.01" ixy="0.0" ixz="0.0"
-          iyy="0.01" iyz="0.0"
-          izz="0.01" />
+        <xacro:cylinder_inertia m="0.1" r="${base_link_radius}" h="${base_link_length}"/>
       </inertial>
     </link>
     <joint name="plate_${num}_joint" type="fixed">
