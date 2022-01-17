@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <rosparam file="$(find mrobot_control)/config/mrobot_control.yaml" command="load"/>
+
+  <!-- load the controllers -->
+  <node name="car_controller_spawner" pkg="controller_manager" type="spawner" output="screen" args="joint_state_controller"/>
+</launch>
