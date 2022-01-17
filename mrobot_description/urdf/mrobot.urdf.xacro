@@ -178,4 +178,5 @@
 
   <xacro:plate num="2" parent="plate_1_link"/>
 
+  <xacro:include filename="$(find mrobot_description)/urdf/mrobot.transmission.xacro"/>
 </robot>
