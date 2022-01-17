@@ -22,6 +22,12 @@
       <origin xyz=" 0 0 0" rpy="0 0 0" />
       <material name="yellow" />
     </visual>
+    <collision>
+      <geometry>
+        <cylinder radius="${base_link_radius}" length="${base_link_length}"/>
+      </geometry>
+      <origin xyz=" 0 0 0" rpy="0 0 0" />
+    </collision>
   </link>
   <joint name="base_footprint_joint" type="fixed">
     <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0" />
@@ -39,6 +45,12 @@
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <material name="gray" />
       </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="${motor_radius}" length="${motor_length}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0" />
+      </collision>
     </link>
     <joint name="base_${prefix}_motor_joint" type="fixed">
       <origin xyz="${motor_x} ${motor_y_dist/2*yreflect} 0" rpy="0 0 0" />
@@ -58,6 +70,12 @@
         <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
         <material name="white" />
       </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="${wheel_radius}" length="${wheel_length}"/>
+        </geometry>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
+      </collision>
     </link>
     <joint name="${prefix}_wheel_joint" type="continuous">
       <origin xyz="0 ${(motor_length+wheel_length)/2*yreflect} 0" rpy="0 0 0"/>
@@ -78,6 +96,12 @@
       <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
       <material name="black" />
     </visual>
+    <collision>
+      <geometry>
+        <sphere radius="${wheel_radius/2}" />
+      </geometry>
+      <origin xyz="0 0 0.01" rpy="${pi/2} 0 0"/>
+    </collision>
   </link>
   <joint name="front_caster_joint" type="fixed">
     <origin xyz="${base_link_radius-wheel_radius/2} 0 -${wheel_radius/2}" rpy="0 0 0"/>
