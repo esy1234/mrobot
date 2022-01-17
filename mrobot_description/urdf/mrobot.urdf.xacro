@@ -81,33 +81,37 @@
   <xacro:wheel prefix="left" yreflect="1"/>
   <xacro:wheel prefix="right" yreflect="-1"/>
 
-  <link name="front_caster_link">
-    <visual>
-      <geometry>
-        <sphere radius="${wheel_radius/2}" />
-      </geometry>
-      <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
-      <material name="black" />
-    </visual>
-    <collision>
-      <geometry>
-        <sphere radius="${wheel_radius/2}" />
-      </geometry>
-      <origin xyz="0 0 0.01" rpy="${pi/2} 0 0"/>
-    </collision>
-    <inertial>
-      <origin xyz="0 0 0" />
-      <mass value="0.001" />
-      <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
-        iyy="0.0001" iyz="0.0"
-        izz="0.0001" />
-    </inertial>
-  </link>
-  <joint name="front_caster_joint" type="fixed">
-    <origin xyz="${base_link_radius-wheel_radius/2} 0 -${wheel_radius/2}" rpy="0 0 0"/>
-    <parent link="base_link"/>
-    <child link="front_caster_link"/>
-  </joint>
+  <xacro:macro name="caster" params="fb xreflect">
+    <link name="${fb}_caster_link">
+      <visual>
+        <geometry>
+          <sphere radius="${caster_radius}" />
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <material name="black" />
+      </visual>
+      <collision>
+        <geometry>
+          <sphere radius="${caster_radius}" />
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 0" />
+        <mass value="0.001" />
+        <inertia ixx="0.0001" ixy="0.0" ixz="0.0"
+          iyy="0.0001" iyz="0.0"
+          izz="0.0001" />
+      </inertial>
+    </link>
+    <joint name="{fb}_caster_joint" type="fixed">
+      <origin xyz="${caster_joint_origin_x*xreflect} 0 ${-caster_radius}" rpy="0 0 0"/>
+      <parent link="base_link"/>
+      <child link="${fb}_caster_link"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:caster fb="front" xreflect="-1"/>
 
   <xacro:macro name="mrobot_standoff_2in" params="parent number x_loc y_loc z_loc">
     <link name="standoff_2in_${number}_link">
